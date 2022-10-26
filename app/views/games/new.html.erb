@@ -1,0 +1,15 @@
+<h1>New Game</h1>
+<ul class="list-group list-group-horizontal mt-4">
+<% @display_letters.each do |letter| %>
+<li class="list-group-item me-3 p-3"><strong><%= letter.capitalize %></strong></li>
+<% end %>
+</ul>
+
+
+<form action="/score" class="mt-4" method="post" data-turbo="false">
+<label for="input" class="form-label">What is the longest word you can find?</label>
+<input id="input" type="text" name="word" class="form-control">
+<input name="grid" type="hidden" value="<%= @display_letters.join %>"/>
+<input class="btn btn-outline-secondary mt-1" type="submit" value="Play">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+</form>
